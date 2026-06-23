@@ -13,8 +13,9 @@ app.get("/api/health", (req, res) => {
   res.json({ status: "ok", message: "Community Forum API is running" });
 });
 
-// ---- Routes (uncomment as you build each one) ----
-// const authRoutes = require("./routes/auth");
+const authRoutes = require("./routes/auth");
+app.use("/api/auth", authRoutes);
+
 // const postRoutes = require("./routes/posts");
 // const commentRoutes = require("./routes/comments");
 // const voteRoutes = require("./routes/votes");
