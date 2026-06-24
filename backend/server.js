@@ -14,15 +14,14 @@ app.get("/api/health", (req, res) => {
 });
 
 const authRoutes = require("./routes/auth");
-app.use("/api/auth", authRoutes);
+const postRoutes = require("./routes/posts");
+const commentRoutes = require("./routes/comments");
+const voteRoutes = require("./routes/votes");
 
-// const postRoutes = require("./routes/posts");
-// const commentRoutes = require("./routes/comments");
-// const voteRoutes = require("./routes/votes");
-// app.use("/api/auth", authRoutes);
-// app.use("/api/posts", postRoutes);
-// app.use("/api/comments", commentRoutes);
-// app.use("/api/votes", voteRoutes);
+app.use("/api/auth", authRoutes);
+app.use("/api/posts", postRoutes);
+app.use("/api/comments", commentRoutes);
+app.use("/api/votes", voteRoutes);
 
 const PORT = process.env.PORT || 5000;
 
