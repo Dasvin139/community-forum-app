@@ -18,15 +18,15 @@ nested comments. Add these later once the core app is live and on your resume.
 
 ## Day-by-day plan
 
-| Day | Task |
-|---|---|
-| 1 | ✅ Project structure, Express server, Sequelize models, frontend skeleton — done, this is what you're looking at. |
-| 2 | Backend: `routes/auth.js` — signup, login, JWT issue/verify. |
-| 3 | Backend: `routes/posts.js`, `routes/comments.js`, `routes/votes.js`. |
-| 4 | Frontend: Login/Signup pages, finish `AuthContext`, protected routes. |
-| 5 | Frontend: Home feed with category filter, create-post form, post detail + comments. |
-| 6 | Frontend: wire up voting, loading/error states, responsive pass. |
-| 7 | Deploy backend to Render (with Postgres), frontend to Vercel, write final README with screenshots. |
+| Day | Task                                                                                                               |
+| --- | ------------------------------------------------------------------------------------------------------------------ |
+| 1   | ✅ Project structure, Express server, Sequelize models, frontend skeleton — done, this is what you're looking at. |
+| 2   | ✅ Backend:`routes/auth.js` — signup, login, JWT issue/verify. Tested via Thunder Client.                      |
+| 3   | Backend:`routes/posts.js`, `routes/comments.js`, `routes/votes.js`.                                          |
+| 4   | Frontend: Login/Signup pages, finish`AuthContext`, protected routes.                                             |
+| 5   | Frontend: Home feed with category filter, create-post form, post detail + comments.                                |
+| 6   | Frontend: wire up voting, loading/error states, responsive pass.                                                   |
+| 7   | Deploy backend to Render (with Postgres), frontend to Vercel, write final README with screenshots.                 |
 
 ## Getting started
 
