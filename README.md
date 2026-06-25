@@ -1,7 +1,10 @@
 # Community Forum App
 
-A scoped-down, Reddit-style forum — built to be finished and deployed in one
-week at 1-2 hrs/day, for use in internship applications.
+⚠️ Note: This project is currently under active development.
+
+A full-stack, Reddit-style community forum where users can sign up, create
+posts under categories, comment, and upvote/downvote — built with a React
+frontend and a Node/Express + MySQL backend with JWT authentication.
 
 **Stack:** React (Vite) + Tailwind + shadcn-style components · Node/Express ·
 Sequelize · PostgreSQL · JWT auth

@@ -43,3 +43,7 @@ If that works, Day 1 is done: DB connects, models sync, server runs.
 2. **Day 3:** `routes/posts.js`, `routes/comments.js`, `routes/votes.js` — CRUD +
    the vote toggle logic (check `models/Vote.js`'s unique index for why you
    look up an existing vote before creating one).
+
+**Day 2 Completed -** when the credentials are inserted signup and login function work properly and tested using Thunder Client
+
+**Day 3 Completed -** routes for posts, comments, and votes are build and CRUD operations are handeled and checked using Thunder Client
