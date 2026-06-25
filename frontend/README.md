@@ -44,3 +44,5 @@ and `cn()` helper rather than overwriting them.
 2. **Day 5:** `Home.jsx` — fetch posts from `GET /api/posts`, category filter,
    `CreatePost.jsx` form, `PostDetail.jsx` with comments.
 3. **Day 6:** Wire voting into `PostDetail.jsx` / `Home.jsx`, polish states.
+
+**Day 4 - completed** login and signup ui build and completed AuthContext's login()
