@@ -8,10 +8,10 @@ npm install
 cp .env.example .env
 ```
 
-Edit `.env` with your local Postgres credentials, then create the database:
+Edit `.env` with your local MySQL credentials, then create the database:
 
 ```bash
-createdb community_forum
+mysql -u root -p -e "CREATE DATABASE community_forum;"
 ```
 
 Run the server:
@@ -31,19 +31,19 @@ If that works, Day 1 is done: DB connects, models sync, server runs.
 ## What's already here
 
 - `config/database.js` — Sequelize connection (works locally now, and will also
-  work on Render later since it reads `DATABASE_URL` if that's set instead).
+  work on a host like Railway/PlanetScale/Aiven later since it reads
+  `DATABASE_URL` if that's set instead).
 - `models/` — User, Post, Comment, Vote, with associations wired up in `models/index.js`.
-- `middleware/auth.js` — JWT verification middleware, ready for Day 2.
-- `server.js` — health check route only. Routes get added as you build them.
+- `middleware/auth.js` — JWT verification middleware.
+- `server.js` — health check + all routes mounted.
+- `routes/auth.js` — signup and login.
+- `routes/posts.js`, `routes/comments.js`, `routes/votes.js` — full CRUD + vote toggle logic.
 
-## What's next (Day 2 onward)
+## Progress
 
-1. **Day 2:** `routes/auth.js` — signup (hash password with bcrypt, create User)
-   and login (compare password, sign JWT). Mount in `server.js`.
-2. **Day 3:** `routes/posts.js`, `routes/comments.js`, `routes/votes.js` — CRUD +
-   the vote toggle logic (check `models/Vote.js`'s unique index for why you
-   look up an existing vote before creating one).
-
-**Day 2 Completed -** when the credentials are inserted signup and login function work properly and tested using Thunder Client
-
-**Day 3 Completed -** routes for posts, comments, and votes are build and CRUD operations are handeled and checked using Thunder Client
+- **Day 1 ✅** — project structure, models, server skeleton, health check confirmed.
+- **Day 2 ✅** — `routes/auth.js` built. Signup and login tested via Thunder Client,
+  confirmed working with real credentials end to end.
+- **Day 3 ✅** — `routes/posts.js`, `routes/comments.js`, `routes/votes.js` built.
+  All CRUD operations and the vote toggle logic (create/remove/switch) tested
+  and confirmed via Thunder Client.
