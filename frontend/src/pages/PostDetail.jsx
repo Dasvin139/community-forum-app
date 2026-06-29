@@ -16,6 +16,9 @@ export default function PostDetail() {
   const [commentError, setCommentError] = useState("");
   const [submittingComment, setSubmittingComment] = useState(false);
 
+  const [voting, setVoting] = useState(false);
+  const [voteError, setVoteError] = useState("");
+
   async function fetchPost() {
     setLoading(true);
     setError("");
@@ -42,7 +45,7 @@ export default function PostDetail() {
     try {
       await api.post(`/comments/post/${id}`, { body: commentText });
       setCommentText("");
-      await fetchPost(); // refetch so the new comment shows up immediately
+      await fetchPost();
     } catch (err) {
       const message = err.response?.data?.message || "Could not add comment.";
       setCommentError(message);
@@ -51,12 +54,27 @@ export default function PostDetail() {
     }
   };
 
+  const handleVote = async (type) => {
+    if (!user) return; // shouldn't happen since buttons are hidden when logged out
+    setVoteError("");
+    setVoting(true);
+    try {
+      await api.post(`/votes/post/${id}`, { type });
+      await fetchPost(); // refetch so the new vote counts show immediately
+    } catch (err) {
+      const message = err.response?.data?.message || "Could not register vote.";
+      setVoteError(message);
+    } finally {
+      setVoting(false);
+    }
+  };
+
   if (loading) return <p className="p-6 text-sm text-muted-foreground">Loading...</p>;
   if (error) return <p className="p-6 text-sm text-red-600">{error}</p>;
   if (!post) return null;
 
   return (
-    <div className="max-w-2xl mx-auto p-6">
+    <div className="max-w-2xl mx-auto p-4 sm:p-6">
       <div className="flex items-center gap-2 text-xs text-muted-foreground mb-1">
         <span className="font-medium">{post.category}</span>
         <span>·</span>
@@ -66,10 +84,34 @@ export default function PostDetail() {
       <h1 className="text-xl font-semibold">{post.title}</h1>
       <p className="mt-2 whitespace-pre-wrap">{post.body}</p>
 
-      {/* Vote counts shown read-only for now — buttons get wired up Day 6 */}
-      <div className="text-sm text-muted-foreground mt-3">
-        ▲ {post.upvotes} upvotes · ▼ {post.downvotes} downvotes
+      <div className="flex items-center gap-3 mt-3">
+        {user ? (
+          <>
+            <Button
+              variant="outline"
+              onClick={() => handleVote("up")}
+              disabled={voting}
+            >
+              ▲ {post.upvotes}
+            </Button>
+            <Button
+              variant="outline"
+              onClick={() => handleVote("down")}
+              disabled={voting}
+            >
+              ▼ {post.downvotes}
+            </Button>
+          </>
+        ) : (
+          <span className="text-sm text-muted-foreground">
+            ▲ {post.upvotes} · ▼ {post.downvotes} —{" "}
+            <Link to="/login" className="text-primary underline">
+              log in to vote
+            </Link>
+          </span>
+        )}
       </div>
+      {voteError && <p className="text-red-600 text-sm mt-1">{voteError}</p>}
 
       <hr className="my-6 border-border" />
 
