@@ -1,6 +1,6 @@
 # Community Forum — Backend
 
-## Day 1 setup
+## Local setup
 
 ```bash
 cd backend
@@ -26,24 +26,27 @@ Visit `http://localhost:5000/api/health` — you should see:
 { "status": "ok", "message": "Community Forum API is running" }
 ```
 
-If that works, Day 1 is done: DB connects, models sync, server runs.
+## Deployed
 
-## What's already here
+Live on Railway: https://your-actual-railway-url.up.railway.app/api/health
 
-- `config/database.js` — Sequelize connection (works locally now, and will also
-  work on a host like Railway/PlanetScale/Aiven later since it reads
-  `DATABASE_URL` if that's set instead).
+`config/database.js` reads `DATABASE_URL` automatically when it's set, which
+is how this runs unmodified on Railway with its managed MySQL instance.
+
+## What's here
+
+- `config/database.js` — Sequelize connection, supports both local env vars
+  and a single `DATABASE_URL` (used in production).
 - `models/` — User, Post, Comment, Vote, with associations wired up in `models/index.js`.
 - `middleware/auth.js` — JWT verification middleware.
 - `server.js` — health check + all routes mounted.
 - `routes/auth.js` — signup and login.
 - `routes/posts.js`, `routes/comments.js`, `routes/votes.js` — full CRUD + vote toggle logic.
 
-## Progress
+## Build progress
 
 - **Day 1 ✅** — project structure, models, server skeleton, health check confirmed.
-- **Day 2 ✅** — `routes/auth.js` built. Signup and login tested via Thunder Client,
-  confirmed working with real credentials end to end.
-- **Day 3 ✅** — `routes/posts.js`, `routes/comments.js`, `routes/votes.js` built.
-  All CRUD operations and the vote toggle logic (create/remove/switch) tested
-  and confirmed via Thunder Client.
+- **Day 2 ✅** — `routes/auth.js` built. Signup and login tested via Thunder Client.
+- **Day 3 ✅** — `routes/posts.js`, `routes/comments.js`, `routes/votes.js` built and tested.
+- **Day 7 ✅** — deployed to Railway with managed MySQL.
+
